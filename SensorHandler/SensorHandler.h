@@ -4,6 +4,7 @@
 #include <stdint.h>
 #define byte uint8_t
 #define NameLength 10
+#define SensorMaxCount 100
 struct SensorData {
     char SensorName[NameLength];
     byte SensorAddress=0;
@@ -23,11 +24,13 @@ class SensorHandler
 
   public:
     SensorHandler(int count);
+    int sensorCount();
     void add(char * SensorStr);
-    SensorData getSensor(int Address);
+    SensorData getSensor(uint8_t Address,uint8_t Function);
     int SensorCount=0;
+     SensorData _SensorData[SensorMaxCount];
   private:
-     SensorData _SensorData[100];
+
 
 };
 
