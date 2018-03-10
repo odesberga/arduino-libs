@@ -14,11 +14,6 @@ SerialCommunication::SerialCommunication(SoftwareSerial &serial,byte ownAddress,
         _useRS485=true;
         pinMode(RS485resvPin, OUTPUT);
         digitalWrite(RS485resvPin, RS485Receive);
-
-        //_mySerial.begin(19200);
-        //_mySerial.print("init");
-
-
     }
     else
     {
@@ -38,7 +33,6 @@ void SerialCommunication::refresh(){
         byte rb;
         while (_SoftSerial.available() > 0 && _newData == false) {
             rb = _SoftSerial.read();
-
             if (recvInProgress == true) {
                 if (rb != endMarker) {
                     _receivedBytes[ndx] = rb;
@@ -48,9 +42,7 @@ void SerialCommunication::refresh(){
                     }
                 }
                 else {
-                    //_receivedBytes[ndx] = '\0'; // terminate the string
                     recvInProgress = false;
-                    //_numReceived = ndx;  // save the number for use when printing
                     ndx = 0;
                     if (_useRS485) {
                         if (_receivedBytes[0] == _ownAddress){
