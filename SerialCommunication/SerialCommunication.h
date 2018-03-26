@@ -17,13 +17,14 @@ class SerialCommunication
 
   public:
 
-    SerialCommunication(SoftwareSerial& serial,byte ownAddress,int RS485resvPin);
+    SerialCommunication(SoftwareSerial& serial,int RS485resvPin);
     SoftwareSerial&  _SoftSerial;
     void refresh();
-    void begin();
-    void sendData(int address,char getSet,int sensor,int16_t sensorValue);
+    void begin(byte ownAddress);
+    void sendData(byte address,char getSet,byte sensor,int16_t sensorValue);
     bool gotData();
     SerialData resvData;
+    int ownAddress();
   private:
     void fillSerialData();
     void flushData();
