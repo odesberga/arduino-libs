@@ -5,11 +5,13 @@
 
 //SoftwareSerial _mySerial(10, 11);
 struct SerialData {
+    byte destAddress;
     char GetOrSet;
     int Function;
+    byte firstVal;
+    byte secVal;
     int16_t Value;
     byte sender_address;
-
 };
 
 class SerialCommunication
@@ -22,6 +24,7 @@ class SerialCommunication
     void refresh();
     void begin(byte ownAddress);
     void sendData(byte address,char getSet,byte sensor,int16_t sensorValue);
+    void sendData(byte address,char getSet,byte sensor,byte firstSensorValue,byte secondSensorValue);
     bool gotData();
     SerialData resvData;
     int ownAddress();
